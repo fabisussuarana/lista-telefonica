@@ -1,4 +1,5 @@
 import express, { json } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { 
@@ -16,6 +17,11 @@ const PORT = 3000;
 
 // middleware
 app.use(express.json());
+app.use(cors({
+  origin: process.env.URL_FRONT, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'] 
+}));
 
 const connectDB = async () => {
     try {
